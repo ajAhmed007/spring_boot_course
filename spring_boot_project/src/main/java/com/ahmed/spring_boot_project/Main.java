@@ -3,6 +3,7 @@ package com.ahmed.spring_boot_project;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ public class Main {
 	static{
 		customers = new ArrayList<>();
 		Customer alex = new Customer(1, "Alex", "alex@gmail.com", 20);
-		Customer jamila = new Customer(1, "jamila", "alex@gmail.com", 21);
+		Customer jamila = new Customer(2, "jamila", "alex@gmail.com", 21);
 
 		customers.add(alex);
 		customers.add(jamila);
@@ -25,10 +26,25 @@ public class Main {
 		SpringApplication.run(Main.class, args);
 	}
 
+	/**
+	 * Get all customers
+	 * @return List<Customer>
+	 */
 	@GetMapping("api/v1/customers")
 	public List<Customer> getCustomers(){
 		return customers;
 	}
+
+	/**
+	 * Get customer by id
+	 * @return Customer
+	 *
+	 */
+	@GetMapping("api/v1/customer{id}")
+	public Customer getCustomer(@PathVariable("id") Integer id){
+
+	}
+
 
 	static class Customer{
 		private Integer id; 
